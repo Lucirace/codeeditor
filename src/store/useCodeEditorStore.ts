@@ -35,12 +35,10 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
     error: null,
     editor: null,
     executionResult: null,
-// @ts-expect-error: Type mismatch due to external library types
     getCode: () => get().editor?.getValue() || "",
 
     setEditor: (editor: Monaco) => {
       const savedCode = localStorage.getItem(`editor-code-${get().language}`);
-      // @ts-expect-error: Type mismatch due to external library types
       if (savedCode) editor.setValue(savedCode);
 
       set({ editor });
@@ -58,7 +56,6 @@ export const useCodeEditorStore = create<CodeEditorState>((set, get) => {
 
     setLanguage: (language: string) => {
       // Save current language code before switching
-      // @ts-expect-error: Type mismatch due to external library types
       const currentCode = get().editor?.getValue();
       if (currentCode) {
         localStorage.setItem(`editor-code-${get().language}`, currentCode);
